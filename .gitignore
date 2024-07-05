@@ -1,0 +1,33 @@
+# Ignore compiled Python files
+*.pyc
+__pycache__/
+
+# Ignore the local settings file
+/reservations_project/settings/local.py
+
+# Ignore SQLite database
+/db.sqlite3
+
+# Ignore media uploads
+/media/
+
+# Ignore static files
+/static/
+
+# Ignore pipenv virtual environment
+/.venv/
+
+# Ignore IDE or editor specific files
+.vscode/
+.idea/
+
+# Ignore system or backup files
+*.swp
+*~
+.DS_Store
+
+# Ignore environment-specific files
+.env
+
+# Ignore pipenv lock file
+Pipfile.lock

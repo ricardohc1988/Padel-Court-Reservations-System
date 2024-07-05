@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Locations{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="mt-4">Locations</h1>
+    <div class="row">
+        {% for location in locations %}
+        <div class="col-md-4 mt-4 mb-4">
+            <div class="card h-100">
+                {% if location.image %}
+                <img src="{{ location.image.url }}" class="card-img-top" alt="{{ location.name }}">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title mb-3">{{ location.name }}</h5>
+                    <div class="card-text"><strong>Location:</strong> {{ location.city }}, {{ location.state }}</div>
+                    <div class="card-text"><strong>Address:</strong> {{ location.address }}</div>
+                    <div class="card-text"><strong>Phone number:</strong> {{ location.phone_number }}</div>
+                </div>
+                <div class="card-footer text-center">
+                    <div class="d-grid gap-2">
+                        <a href="https://www.google.com/maps/search/?api=1&query={{ location.address|urlencode }}%2C+{{ location.city|urlencode }}%2C+{{ location.state|urlencode }}%2C+{{ location.zip_code|urlencode }}" target="_blank" class="btn btn-primary">
+                            Ver ubicación
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

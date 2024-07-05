@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservation Confirmation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .details {
+            margin: 20px 0;
+        }
+        .details p {
+            color: #333;
+        }
+        .details p strong {
+            color: #007bff;
+        }
+        .footer {
+            text-align: center;
+            color: #999;
+            font-size: 12px;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none; 
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+  <h1>Reservation Confirmation</h1>
+  <p>Dear <strong>{{ username }}</strong>,</p>
+  <p>Your reservation has been confirmed with the following details:</p>
+  <div class="details">
+    <p><strong>Date:</strong> {{ reservation.date }}</p>
+    <p><strong>Start Time:</strong> {{ reservation.start_time }}</p>
+    <p><strong>End Time:</strong> {{ reservation.end_time }}</p>
+    <p><strong>Location:</strong> {{ reservation.court.location }}</p>
+    <p><strong>Court:</strong> {{ reservation.court.name }}</p>
+  </div>
+  <button><a href="https://www.google.com/maps/search/?api=1&query={{ reservation.court.location.address|urlencode }}%2C+{{ reservation.court.location.city|urlencode }}%2C+{{ reservation.court.location.state|urlencode }}%2C+{{ reservation.court.location.zip_code|urlencode }}" target="_blank" class="btn">Open on Google Maps</a></button>
+  <p><strong>Note:</strong> You may cancel this reservation up to 2 hours before the scheduled time. Cancellations made less than 2 hours before will result in penalties.</p>
+  <p>Thank you for your reservation.</p>
+  <div class="footer">&copy; 2024 Padel Court. All rights reserved. </div>
+</div>
+</body>
+</html>

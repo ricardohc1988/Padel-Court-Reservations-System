@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block title %}Your Reservations{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="mt-4">Your reservations</h1>
+
+    <a href="{% url 'past_reservations' %}" class="btn btn-primary mb-3">View Past Reservations</a>
+    <a href="{% url 'cancelled_reservations' %}" class="btn btn-primary mb-3">View Cancelled Reservations</a>
+
+    {% if upcoming_reservations %}
+    <div class="table-responsive table-centered">
+        <table class="table table-striped mt-4 table-shadow">
+            <thead>
+                <tr>
+                    <th class="text-center small" scope="col">Date</th>
+                    <th class="text-center small" scope="col">Location</th>
+                    <th class="text-center small" scope="col">Court</th>
+                    <th class="text-center small" scope="col">Start Time</th>
+                    <th class="text-center small" scope="col">End Time</th>
+                    <th class="text-center small" scope="col">Status</th>
+                    <th class="text-center small" scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                {% for reservation in upcoming_reservations %}
+                <tr>
+                    <td class="text-center">{{ reservation.date }}</td>
+                    <td class="text-center">{{ reservation.court.location.name }}</td>
+                    <td class="text-center">{{ reservation.court.name }}</td>
+                    <td class="text-center">{{ reservation.start_time }}</td>
+                    <td class="text-center">{{ reservation.end_time }}</td>
+                    <td class="text-center text-success">{{ reservation.get_status_display }}</td>
+                    <td class="text-center">
+                        {% if reservation.status == 'confirmed' %}
+                        <a href="{% url 'cancel_reservation' reservation.pk %}" class="btn btn-sm btn-danger"
+                            onclick="return confirm('Do you really want to cancel your reservation for {{ reservation.court.location.name }} - {{ reservation.court.name }} on {{ reservation.date }} at {{ reservation.start_time }}?')">
+                            Cancel
+                        </a>
+                        {% else %}
+                        <span class="text-muted">Cancelled</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <div class="alert alert-info mt-4" role="alert">
+        No upcoming reservations found. <a href="{% url 'new_reservation' %}">Make a new reservation here!</a>
+    </div>
+    {% endif %}
+</div>
+{% if messages %}
+{% for message in messages %}
+    {% if message.tags == 'success' %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Success!</strong> {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% elif message.tags == 'error' %}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Error!</strong> {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endif %}
+{% endfor %}
+{% endif %}
+{% endblock %}

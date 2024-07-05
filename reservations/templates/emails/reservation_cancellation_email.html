@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservation Cancelled</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .details {
+            margin: 20px 0;
+        }
+        .details p {
+            color: #333;
+        }
+        .details p strong {
+            color: #007bff;
+        }
+        .footer {
+            text-align: center;
+            color: #999;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+  <h1>Reservation Cancellation</h1>
+  <p>Dear <strong>{{ username }}</strong>,</p>
+  <p>Your reservation has been successfully cancelled:</p>
+  <div class="details">
+    <p><strong>Date:</strong> {{ reservation.date }}</p>
+    <p><strong>Start Time:</strong> {{ reservation.start_time }}</p>
+    <p><strong>End Time:</strong> {{ reservation.end_time }}</p>
+    <p><strong>Location:</strong> {{ reservation.court.location }}</p>
+    <p><strong>Court:</strong> {{ reservation.court.name }}</p>
+  </div>
+  <p>We hope to see you again soon. Thank you!</p>
+  <div class="footer">&copy; 2024 Padel Court. All rights reserved. </div>
+</div>
+</body>
+</html>

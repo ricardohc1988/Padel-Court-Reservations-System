@@ -1,0 +1,108 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% load static %}
+    
+    <title>{% block title %}Padel Reservations{% endblock %}</title>
+    <!-- Enlace al CDN de Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"  integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Enlace a tus estilos CSS personalizados -->
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-YWznkfwAOYWgl+UNuhUHSaT+3pJOA0vLWQVAaTlVj7mCNTCchW4PbC8ylestwPJOnGiGPTgibyfUjvEdQg1yBO0Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+<header>
+    <nav class="navbar-custom navbar navbar-expand-lg">
+        <div class="container">
+            {% if user.is_authenticated %}
+                <a class="navbar-brand" href="{% url 'reservations_list' %}">Padel Court</a>
+            {% else %}
+                <a class="navbar-brand" href="{% url 'home' %}">Padel Court</a>
+            {% endif %}
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'locations_list' %}">Locations</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'reservations_list' %}">Reservations</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'new_reservation' %}">New Reservation</a>
+                    </li>
+                    {% if user.is_authenticated %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            {{ user.username }}</a>
+                            <ul class="dropdown-menu">
+                            <li><a class="dropdown-item"href="{% url 'my_account' %}">My account</a></li>
+                            <li><hr class="dropdown-divider"></li>
+
+                                <li>
+                                    <form action="{% url 'logout' %}" method="post">
+                                    {% csrf_token %}
+                                    <button type="submit" class="dropdown-item">Logout</button>
+                                    </form>
+                                </li>
+
+                            </ul>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'login' %}">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'signup' %}">Sign Up</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+
+<main class="container">
+    {% block content %}
+
+    {% endblock %}
+</main>
+
+<footer class="bg-dark text-white text-center py-2">
+    <div class="container">
+        <section class="d-flex justify-content-center mb-2">
+            <a class="btn btn-floating m-1 social-icon" href="#!" role="button">
+                <img src="{% static 'images/icons/facebook.png' %}" alt="facebook">
+            </a>
+            <a class="btn btn-floating m-1 social-icon" href="#!" role="button">
+                <img src="{% static 'images/icons/xtwitter.png' %}" alt="xtwitter">
+            </a>
+            <a class="btn btn-floating m-1 social-icon" href="#!" role="button">
+                <img src="{% static 'images/icons/instagram.png' %}" alt="instagram">
+            </a>
+        </section>
+        <div class="text-center">
+            © 2024 Copyright
+            <a class="text-white">PadelCourt</a>
+        </div>
+    </div>
+</footer>
+
+<!-- Scripts al final del cuerpo -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+
+<!-- Script adicional para jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Script adicional para jQuery UI -->
+<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
+
+</body>
+</html>

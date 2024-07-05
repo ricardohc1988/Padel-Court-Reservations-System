@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block title %}New Reservation{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card mt-4">
+                <div class="card-body">
+                    <h2 class="card-title text-center">New Reservation</h2>
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="date">Date:</label>
+                            <input type="date" id="date" name="date" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="start_time">Start Time:</label>
+                            {{ form.start_time }}
+                        </div>
+                        <div class="mb-3">
+                            <label for="end_time">End Time:</label>
+                            {{ form.end_time }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form.court.label_tag }}
+                            {{ form.court }}
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary btn-block">Make Reservation</button>
+                        </div>
+                    </form>
+                </div>
+                {% if messages %}
+                    {% for message in messages %}
+                        {% if message.tags == 'success' %}
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <strong>Success!</strong> {{ message }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        {% elif message.tags == 'error' %}
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <strong>Error!</strong> {{ message }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const startField = document.getElementById('id_start_time');
+        const endField = document.getElementById('id_end_time');
+    
+        startField.addEventListener('change', function() {
+            const startValue = startField.value;
+            endField.innerHTML = '';
+    
+            for (let hour = parseInt(startValue.substr(0, 2)) + 1; hour <= 23; hour++) {
+                const option = document.createElement('option');
+                const formattedHour = hour.toString().padStart(2, '0');
+                option.value = formattedHour + ':00';
+                option.textContent = formattedHour + ':00';
+                endField.appendChild(option);
+            }
+        });
+    });
+    </script>
+{% endblock %}

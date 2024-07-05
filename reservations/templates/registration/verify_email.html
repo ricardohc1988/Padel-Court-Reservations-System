@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}Verify Email{% endblock %}
+
+{% block content %}
+<div class="container mt-3">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title text-center mb-4">Verify Email</h2>
+                    <p class="text-center mb-4">A verification code has been sent to your email</p>
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="form-group mb-4">
+                            {{ form.code }}
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary btn-block">Verify Email</button>
+                        </div>
+                    </form>
+                    <p class="text-center mt-3">Didn't receive a code? <a href="{% url 'resend_code' %}">Resend Code</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% if messages %}
+<div class="container mt-3">
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            <strong>{{ message.tags|title }}!</strong> {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endfor %}
+</div>
+{% endif %}
+{% endblock %}

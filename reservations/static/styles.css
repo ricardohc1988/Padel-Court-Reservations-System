@@ -1,0 +1,155 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.navbar-custom {
+    background-color: #2257A5;
+    color: white;
+    padding: 0.5rem;
+}
+
+.navbar-custom .navbar-brand {
+    font-size: 2rem;
+    color: white;
+    text-decoration: none;
+}
+
+.navbar-custom .navbar-nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+.navbar-custom .nav-item {
+    margin-left: 1.5rem;
+}
+
+.navbar-custom .nav-link {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    border-radius: 5px;
+}
+
+.navbar-custom .nav-link:hover {
+    background-color: white;
+    color: #2257A5;
+    border-radius: 5px;
+  }
+
+.navbar-custom .dropdown-menu {
+    background-color: #2257A5;
+}
+
+.navbar-custom .dropdown-item {
+    color: white;
+}
+
+.navbar-custom .dropdown-item:hover {
+    color: #2257A5;  
+  }
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0.5rem;
+}
+
+main {
+    padding: 2rem 0;
+}
+
+.card {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.table-shadow {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+footer p {
+    margin: 0;
+}
+
+.home-container h1 {
+    font-size: 2.5rem; /* Ajusta el tamaño del título según tus necesidades */
+    margin-bottom: 3rem;
+}
+
+.home-container p {
+    font-size: 1.5rem; /* Ajusta el tamaño del texto según tus necesidades */
+    margin-bottom: 3rem;
+}
+
+.cta-buttons {
+    margin-top: 3rem;
+}
+
+.cta-buttons .btn {
+    display: inline-block;
+    padding: 1rem 3rem;
+    background-color: #0275d8;
+    color: white;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.cta-buttons .btn:hover {
+    background-color: #025aa5;
+}
+
+.carousel-img {
+    width: 100%;
+    height: 400px; 
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.social-icon {
+    display: inline-block; /* Ensures icons appear side-by-side */
+}
+
+.social-icon img {
+    width: 32px;
+    height: 32px;
+    border-radius: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    position: absolute;
+    padding: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+footer .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+footer .container section {
+    display: flex;
+    justify-content: center;
+}
+
+footer .container div {
+    margin-top: 0.5rem; /* Adjust the margin between sections */
+}

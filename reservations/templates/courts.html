@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Courts{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="mt-4">Courts</h1>
+    <div class="row">
+        {% for court in courts %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">{{ court.name }}</h5>
+                    <p class="card-text"><strong>Location:</strong> {{ court.location }}</p>
+                    <p class="card-text">{{ court.details }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
